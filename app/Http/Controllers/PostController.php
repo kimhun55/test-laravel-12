@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -75,10 +76,24 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'img_path' => 'nullable|image|max:2048', // 2048 KB to 2 MB
         ]);
 
+        if ($request->hasFile('img_path')) {
+            // delete old image if exists
+            if ($post->img_path) {
+                Storage::disk('public')->delete($post->img_path);
+            }
+
+            $imagePath = $request->file('img_path')->store('images', 'public');
+            $validated['img_path'] = $imagePath;
+        }
+
         $post->update(
-         $request->only('title', 'content')
+            ['title' => $validated['title'],
+             'content' => $validated['content'],
+             'img_path' => $validated['img_path'] ?? $post->img_path,
+            ]
         );
         return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
     }
