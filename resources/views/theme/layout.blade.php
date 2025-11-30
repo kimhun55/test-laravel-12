@@ -25,6 +25,10 @@
             <li class="nav-item">
             <a class="nav-link" href="{{ url('/page2') }}">Page 2</a>
           </li>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url('/post/home') }}">post</a>
+          </li>
       </div>
     </div> 
     </nav>
