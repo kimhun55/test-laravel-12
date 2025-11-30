@@ -1,15 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use  App\Http\Controllers\PostController;
+
+// ports
+Route::get('/post/create', [PostController::class, 'create'])->name('posts.create');
+Route::get('/post/home', [PostController::class, 'index'])->name('posts.index');
+Route::post('/post/store', [PostController::class, 'store'])->name('posts.store');
+Route::delete('/post/delete/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+    
+
 
 Route::get('/', function () {
-    // return view('index',[
-    //     'name' => 'chaiyaporn wama',
-    //     'framework' => '<h1 style="color:red;">laravel framework</h1>',
-    //     'age' => 20,
-    // ]); 
-
-
     $name = 'chaiyaporn wama';
     $framework = '<h1 style="color:red;">laravel framework</h1>';
     return view('index',compact('name','framework'));
