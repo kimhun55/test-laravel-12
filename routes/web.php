@@ -6,6 +6,7 @@ use  App\Http\Controllers\PostController;
 // ports
 Route::get('/post/create', [PostController::class, 'create'])->name('posts.create');
 Route::get('/post/home', [PostController::class, 'index'])->name('posts.index');
+Route::get('post/show/{post}',[PostController::class,'show'])->name('posts.show');
 Route::post('/post/store', [PostController::class, 'store'])->name('posts.store');
 Route::delete('/post/delete/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
     

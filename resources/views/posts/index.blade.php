@@ -16,7 +16,7 @@
                         <h2 class="card-title h4">{{ $post->title }}</h2>
                         <p class="card-text text-muted">{{ $post->content }}</p>
                         <!-- button view post -->
-                        <a href="#" class="btn btn-primary btn-sm">Read More</a>
+                        <a href="{{ route('posts.show',$post)}}" class="btn btn-primary btn-sm">Read More</a>
                         <!-- edit and delete buttons -->
                         <div class="mt-3">
                             <a href="#" class="btn btn-success btn-sm">Edit</a>
