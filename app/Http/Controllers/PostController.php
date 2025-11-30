@@ -32,10 +32,19 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
+            'img_path' => 'nullable|image|max:2048', // 2048 KB to 2 MB
         ]);
 
+        if ($request->hasFile('img_path')) {
+            $imagePath = $request->file('img_path')->store('images', 'public');
+            $validated['img_path'] = $imagePath;
+        }
+       
         $post = Post::create(
-         $request->only('title', 'content')
+            ['title' => $validated['title'],
+             'content' => $validated['content'],
+             'img_path' => $validated['img_path'] ?? null,
+            ]
         );
 
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');

@@ -13,6 +13,9 @@
             <div class="col-12">
                 <div class="card shadow-sm">
                     <div class="card-body">
+                        @if($post->img_path)
+                            <img src="{{ asset('storage/' . $post->img_path) }}" alt="Post Image" class="img-fluid mb-3" style="max-height: 300px; object-fit: cover;">
+                        @endif
                         <h2 class="card-title h4">{{ $post->title }}</h2>
                         <p class="card-text text-muted">{{ $post->content }}</p>
                         <!-- button view post -->
