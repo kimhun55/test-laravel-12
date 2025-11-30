@@ -9,7 +9,8 @@ Route::get('/post/home', [PostController::class, 'index'])->name('posts.index');
 Route::get('post/show/{post}',[PostController::class,'show'])->name('posts.show');
 Route::post('/post/store', [PostController::class, 'store'])->name('posts.store');
 Route::delete('/post/delete/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
-    
+Route::get('/post/edit/{post}', [PostController::class, 'edit'])->name('posts.edit');
+Route::put('/post/update/{post}', [PostController::class, 'update'])->name('posts.update');
 
 
 Route::get('/', function () {

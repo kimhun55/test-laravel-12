@@ -19,7 +19,7 @@
                         <a href="{{ route('posts.show',$post)}}" class="btn btn-primary btn-sm">Read More</a>
                         <!-- edit and delete buttons -->
                         <div class="mt-3">
-                            <a href="#" class="btn btn-success btn-sm">Edit</a>
+                            <a href="{{ route('posts.edit', $post) }}" class="btn btn-success btn-sm">Edit</a>
                             <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this post?');">
                                 @csrf
                                 @method('DELETE')
