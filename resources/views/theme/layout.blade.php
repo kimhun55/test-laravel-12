@@ -29,6 +29,16 @@
             <li class="nav-item">
             <a class="nav-link" href="{{ url('/post/home') }}">post</a>
           </li>
+          @auth
+            <li class="nav-item">
+              <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-link nav-link text-danger">
+                  <i class="bi bi-box-arrow-right"></i> Logout
+                </button>
+              </form>
+            </li>
+          @endauth
       </div>
     </div> 
     </nav>

@@ -3,6 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\PostController;
 
+Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+Route::get('/register', [App\Http\Controllers\AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register.post');
+
+//middleware auth
+Route::middleware('auth')->group(function () {
+
 // ports
 Route::get('/post/create', [PostController::class, 'create'])->name('posts.create');
 Route::get('/post/home', [PostController::class, 'index'])->name('posts.index');
@@ -29,6 +38,8 @@ Route::get('/page1', function () {
 Route::get('/page2', function () {
     return view('page2'); 
 })->name('page2');
+
+}); //end middleware auth
 
 
 
